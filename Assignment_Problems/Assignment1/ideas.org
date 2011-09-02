@@ -1,0 +1,3 @@
+* Ideas
+** Use an If...then statement if the number of days input is over 7 days
+** 
