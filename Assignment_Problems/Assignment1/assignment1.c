@@ -5,7 +5,7 @@
 
 
    Outputs:           Weeks - Total Weeks
-                      Days - Converted Days
+		      Days - Converted Days
 
    Written by: Jesse N. Richardson     Date: Mon, 05 Sep 2011 18:46:54 -0400
 
@@ -28,7 +28,7 @@ int main (void)
 
   printf("Please enter the number of the days\n");
   scanf("%d", &totalDays);
-  
+
   weeks = totalDays / 7;
 
   days = totalDays % 7;
