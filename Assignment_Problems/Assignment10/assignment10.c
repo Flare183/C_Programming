@@ -6,8 +6,9 @@
 /* I'm wanting to put global here, why? I have no idea. Damn java >.< */
 int hhIn, mmIn;
 int hhOut, mmOut;
-/* Above are global varibles. Which aren't really recommened. But do you see me
-   giving a fuck? No. */
+/* The above are global varibles. Which aren't really recommened. But do you
+   see me giving a fuck? No. */
+
 int calculateTime (int hhIn, int mmIn, int hhOut, int mmOut);
 float calculateCharges (int calculateTime);
 int totalCharge;
