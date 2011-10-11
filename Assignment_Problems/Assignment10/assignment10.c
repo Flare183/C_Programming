@@ -1,6 +1,3 @@
-// Assign 10.cpp : Defines the entry point for the console application.
-//
-
 #include <stdio.h>
 
 /* I'm wanting to put global here, why? I have no idea. Damn java >.< */
@@ -10,7 +7,7 @@ int hhOut, mmOut;
    see me giving a fuck? No. */
 
 int calculateTime (int hhIn, int mmIn, int hhOut, int mmOut);
-float calculateCharges (int calculateTime);
+int calculateCharges (int calculateTime);
 int totalCharge;
 int printReceipt (void);
 
@@ -21,6 +18,8 @@ int main (void)
 
   printf("\nEnter time OUT: ");
   scanf("%d:%d", &hhOut, &mmOut);	/* */
+
+  calculateTime(hhIn, mmIn, hhOut, mmOut);
 
   printReceipt();
 
@@ -42,7 +41,7 @@ int calculateTime (int hhIn, int mmIn, int hhOut, int mmOut)
   return timeTotal;
 };
 
-float calculateCharges (int calculateTime)
+int calculateCharges (int calculateTime)
 {
   float totalCharge = 0.00;
   float charge1 = 2.00;		/*$2.00 for first 3 hrs */
@@ -73,12 +72,14 @@ float calculateCharges (int calculateTime)
 
 int printReceipt (void)
 {
-  printf ("\nParking Receipt\n");
-  printf ("Time IN: %d:%d\n", hhIn, mmIn);
-  printf ("Time OUT: %d:%d\n", hhOut, mmOut);
-  printf ("Total Time is: %d hours, %d minutes\n",
-	  calculateTime(hhIn, mmIn, hhOut, mmOut));
-  printf ("Total Charge: $", "%.2f\n",
-	  calculateCharges(calculateTime (hhIn, mmIn, hhOut, mmOut)));
-  printf ("--------------------------------\n");
+  printf("\nParking Receipt\n");
+  printf("Time IN: %d:%d\n", hhIn, mmIn);
+  printf("Time OUT: %d:%d\n", hhOut, mmOut);
+  printf("Total Time is: %d hours, %d minutes\n",
+	 calculateTime(hhIn, mmIn, hhOut, mmOut));
+  printf("Total Charge: $", "%.2f\n",
+	 calculateCharges(hhIn, mmIn, hhOut, mmOut));
+  printf("--------------------------------\n");
+
+  return 0;
 };
