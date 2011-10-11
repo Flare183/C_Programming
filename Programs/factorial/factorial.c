@@ -13,13 +13,12 @@ int main(void)
     {
       printf("%2d! = %ld\n", i, factorial(i));
     }
-
   return 0;
 };
 
 long factorial(long number)
 {
-  if(number <1)
+  if(number < 1)
     {
       return 1;
     }
