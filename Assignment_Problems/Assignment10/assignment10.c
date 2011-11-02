@@ -1,11 +1,17 @@
+/*************************************************************
+assignment10.c - Calculates Parking Charges
+Inputs - hhIn, mmIn
+Outputs - hhOut, mmOut
+
+Written by - Jesse N. Richardson
+Date: Thu, 13 Oct 2011 06:59:46 -0400
+
+Program Compiles without errors.
+Program does not run correctly
+
+*****************************************************/
+
 #include <stdio.h>
-
-/* I'm wanting to put global here, why? I have no idea. Damn java >.< */
-int hhIn, mmIn;
-int hhOut, mmOut;
-/* The above are global varibles. Which aren't really recommened. But do you
-   see me giving a fuck? No. */
-
 int calculateTime (int hhIn, int mmIn, int hhOut, int mmOut);
 int calculateCharges (int calculateTime);
 int totalCharge;
@@ -13,6 +19,8 @@ int printReceipt (void);
 
 int main (void)
 {
+  int hhIn, mmIn;
+  int hhOut, mmOut;
   printf("Enter time IN: ");
   scanf("%d:%d", &hhIn, &mmIn);	/* */
 
@@ -26,6 +34,9 @@ int main (void)
   return 0;
 };
 
+/* calculateTime - Calculates the time total */
+/* Inputs - None */
+/* Outputs - timeTotal */
 int calculateTime (int hhIn, int mmIn, int hhOut, int mmOut)
 {
   int timeTotal = 0;
@@ -40,7 +51,9 @@ int calculateTime (int hhIn, int mmIn, int hhOut, int mmOut)
 
   return timeTotal;
 };
-
+/* calculateCharges - Calculates the charges */
+/* Inputs - None */
+/* Outputs - totalCharge */
 int calculateCharges (int calculateTime)
 {
   float totalCharge = 0.00;
@@ -70,15 +83,18 @@ int calculateCharges (int calculateTime)
   return totalCharge;
 };
 
+/* printReceipt - Prints the Receipt */
+/* Inputs - None */
+/* Outputs - Calculated Times and Charges */
 int printReceipt (void)
 {
+  int hhIn, mmIn;
+  int hhOut, mmOut;
   printf("\nParking Receipt\n");
   printf("Time IN: %d:%d\n", hhIn, mmIn);
   printf("Time OUT: %d:%d\n", hhOut, mmOut);
-  printf("Total Time is: %d hours, %d minutes\n",
-	 calculateTime(hhIn, mmIn, hhOut, mmOut));
-  printf("Total Charge: $", "%.2f\n",
-	 calculateCharges(hhIn, mmIn, hhOut, mmOut));
+  printf("Total Time is: %d hours, %d minutes\n", calculateTime(hhIn, mmIn, hhOut, mmOut));
+  printf("Total Charge: $", "%.2f\n", calculateCharges(calculateTime(hhIn, mmIn, hhOut, mmOut));
   printf("--------------------------------\n");
 
   return 0;

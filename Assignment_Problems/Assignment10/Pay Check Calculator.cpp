@@ -1,0 +1,210 @@
+/***********************************************************************
+
+PayCheck Calculator.cpp - This program calculates the weekly pay
+								 for various pay rates per employee.
+ 
+
+      Inputs:     payCode - 1 = annual salary employees.
+							2 = hourly employees.
+							3 = commission employees.
+							4 = piece count pay employees.
+				  salRate - annual salary.
+				  hours - hours worked.
+				  hourRate - hourly pay rate.
+				  basePay - flat (base) weekly pay rate.
+				  commRate - commission percentage pay rate.
+				  wkSales - gross weekly sales.
+				  pieceCount - number of pieces made during week.
+				  pieceRate - pay rate per piece made.
+
+      Outputs:    payWk1 - weekly pay for salary employees.
+				  payWk2 - weekly pay for hourly employees
+						   (with or without overtime).
+				  payWk3 - weekly pay for commissioned employees.
+				  payWk4 - weekly pay for piece work employees.
+
+
+      Written by: Scott J. Beman                         Date: 3-5-10
+
+	  Results are: Program compiles and runs with NO errors.
+ 
+************************************************************************/
+
+#include "stdafx.h"
+#include "stdio.h"
+
+/* Function Prototypes */
+
+float payWk1(float salRate);
+float payWk2(float hours, float hourRate);
+float payWk3(float basePay, float commRate, float wkSales);
+float payWk4(float pieceCount, float pieceRate);
+
+
+
+int main()
+{
+	int payCode = 0;
+	float salRate;
+	float hours;
+	float hourRate;
+	float basePay;
+	float commRate;
+	float wkSales;
+	float pieceCount;
+	float pieceRate;
+
+while (payCode != -99)
+{
+	printf("Enter pay code (or -99 to quit): ");
+	scanf_s("%d", &payCode);
+	printf("\n");
+	
+	if (payCode != -99)
+		
+		switch (payCode)
+		{
+		case 1:
+			printf("Enter annual salary: $");
+			scanf_s("%f", &salRate);
+			printf("\n");
+			printf("The weekly pay for pay code 1 employee is: $%.2f\n", payWk1(salRate));
+			printf("\n");
+			break;
+		case 2:
+			printf("Enter hourly pay rate: $");
+			scanf_s("%f", &hourRate);
+			printf("\n");
+			printf("Enter hours worked: ");
+			scanf_s("%f", &hours);
+			printf("\n");
+			printf("The weekly pay for pay code 2 employee is: $%.2f\n", payWk2(hours, hourRate));
+			printf("\n");
+			break;
+		case 3:
+			printf("Enter base pay: $");
+			scanf_s("%f", &basePay);
+			printf("\n");
+			printf("Enter gross weekly sales: $");
+			scanf_s("%f", &wkSales);
+			printf("\n");
+			printf("Enter commission rate (in decimal form): ");
+			scanf_s("%f", &commRate);
+			printf("\n");
+            printf("The weekly pay for pay code 3 employee is: $%.2f\n", payWk3(basePay, commRate, wkSales));
+			printf("\n");
+			break;
+		case 4:
+			printf("Enter number of pieces made: ");
+			scanf_s("%f", &pieceCount);
+			printf("\n");
+			printf("Enter pay per piece: $");
+			scanf_s("%f", &pieceRate);
+			printf("\n");
+            printf("The weekly pay for pay code 4 employee is: $%.2f\n", payWk4(pieceCount, pieceRate));
+			printf("\n");
+			break;
+		default:
+			printf("You did not enter a valid pay code.  Try again.\n");
+			printf("\n");
+		}
+	else
+		return 0;
+	}
+}
+
+
+
+/***********************************************************************
+
+	  payWk1 - Calculates the weekly pay for annual salary employees.
+
+      Inputs:     salRate - annual employee salary.
+
+      Outputs:    payWk1 - weekly pay.
+
+ ************************************************************************/
+float payWk1(float salRate)
+{
+	float answer;
+
+	answer = salRate / 52;
+
+	return answer;
+}
+
+
+
+/***********************************************************************
+
+   	   payWk2 - Calculates the weekly pay for hourly employees (with or
+			   without overtime).
+
+       Inputs:     hours    - number of hours worked.
+				  hourRate - employee hourly pay rate.
+
+      Outputs:    payWk2 - weekly pay.
+
+	  Note: function also calculates any overtime pay (if any).
+
+ ************************************************************************/
+float payWk2(float hours, float hourRate)
+{
+	float otHrs;
+	float otPayRate;
+	float regPay;
+	float otPay;
+
+	if (hours <= 40)
+	{
+		regPay = hours * hourRate;
+		return regPay;
+	}
+	else 
+        otHrs = hours - 40;
+		otPayRate = hourRate * 1.5;
+		otPay = (otHrs * otPayRate) + (40 * hourRate);
+		return otPay;
+}
+
+
+/***********************************************************************
+
+	  payWk3 - Calculates weekly pay employees that are on commission.
+
+      Inputs:     basePay - flat (base) pay rate.
+				  commRate - commission percentage rate.
+				  wkSales - gross weekly sales.
+
+      Outputs:    payWk3 - weekly pay.
+
+ ************************************************************************/
+float payWk3(float basePay, float commRate, float wkSales)
+{
+	float answer;
+
+	answer = (commRate * wkSales) + basePay;
+
+	return answer;
+}
+
+
+
+/***********************************************************************
+
+	  payWk4 - Calculates weekly pay for piece work employees.
+ 
+      Inputs:     pieceCount - number of pieces made per week.
+				  pieceRate - pay rate per piece.
+
+      Outputs:    payWk4 - weekly pay.
+
+ ************************************************************************/
+float payWk4(float pieceCount, float pieceRate)
+{
+	float answer;
+
+	answer = pieceCount * pieceRate;
+
+	return answer;
+}
